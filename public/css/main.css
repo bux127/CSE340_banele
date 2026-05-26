@@ -67,7 +67,6 @@ main {
         list-style: none;
         
         li {
-            display: inline-block;
             gap: 10px;
             
     }
