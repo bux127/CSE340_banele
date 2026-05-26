@@ -7,6 +7,7 @@ import path from 'path';
 
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
+import { getAllCategories } from './src/models/categories.js';
 
 
 
@@ -44,7 +45,6 @@ app.get('/', async (req, res) => {
 
 app.get('/organizations', async (req, res) => {
     const organizations = await getAllOrganizations();
-    
     const title = 'Our Partner Organizations';
     res.render('organizations', { title, organizations });
 });
@@ -55,8 +55,9 @@ app.get('/projects', async (req, res) => {
 });
 
 app.get('/categories', async (req, res) => {
+    const categories = await getAllCategories();
     const title = 'Service Projects';
-    res.render('categories', { title });
+    res.render('categories', { title, categories });
 });
 
 app.listen(PORT, async() => {
