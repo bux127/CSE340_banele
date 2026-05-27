@@ -19,8 +19,12 @@ CREATE TABLE categories (
 
 CREATE TABLE projects (
 	project_id SERIAL PRIMARY KEY,
-	name VARCHAR(60),
+	org_id INT,
+	title VARCHAR(60),
 	description VARCHAR(200)
+	date DATE,
+	location VARCHAR(30),
+	FOREIGN KEY (org_id) REFERENCES organization(org_id);
 );
 
 INSERT INTO categories (name) VALUES
