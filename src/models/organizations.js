@@ -38,14 +38,14 @@ const getOrganizationDetails = async (organizationId) => {
  * @param {string} logo_name - The filename of the organization's logo.
  * @returns {string} The id of the newly created organization record.
  */
-const createOrganization = async (name, description, contactEmail, logoFilename) => {
+const createOrganization = async (name, description, email, logo_name) => {
     const query = `
       INSERT INTO organization (organization_name, description, email, logo_name)
       VALUES ($1, $2, $3, $4)
       RETURNING org_id
     `;
 
-    const queryParams = [name, description, contactEmail, logoFilename];
+    const queryParams = [name, description, email, logo_name];
     const result = await db.query(query, queryParams);
 
     if (result.rows.length === 0) {
