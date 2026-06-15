@@ -88,8 +88,8 @@ const processNewCategoryForm = async (req, res) => {
 }
 
 const showEditCategoryForm = async (req, res) => {
-    const categoryId = req.params.id;
-    const category = await getCategoryDetails(categoryId);
+    const categoryName = req.params.name;
+    const category = await getCategoryDetails(categoryName);
     
     const title = 'Edit Category';
     res.render('edit-category', { title, category});
