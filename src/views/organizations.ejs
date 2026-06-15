@@ -5,12 +5,12 @@
         <p>Here are a few of our partner organizations:</p>
 <ul>
     <% organizations.forEach(organization => { %>
-    <li>
-        <li><img src="/images/<%= organization.logo_name %>" alt="<%= organization.logo_name %> logo"><a href="/organization/<%= organization.organization_id %>"><%= organization.name %></a>: <%= organization.email %></li>
+
+        <li><img src="/images/<%= organization.logo_name %>" alt="<%= organization.logo_name %> logo"><a href="/organization/<%= organization.org_id %>"><%= organization.organization_name %></a>: <%= organization.email %></li>
         
-    </li>
     <%})%>
 </ul>
+<p><a href="/new-organization">Add a new organization</a></p>
     </main>
 <%- include('partials/footer') %>
 
