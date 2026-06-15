@@ -50,30 +50,17 @@ INSERT INTO categories (name) VALUES
 ('educational'),
 ('health and wellness');
 
-INSERT INTO projects (name, description) VALUES
-('park cleanup', 'Join us to clean up local parks and make them beautiful!'),
-('food drive', 'Help collect and distribute food to those in need.'),
-('community tutoring', 'Volunteer to tutor students in various subjects.');
 
-CREATE TABLE project_categories(
-	cart_id INT,
-	project_id INT,
-	PRIMARY KEY (cart_id, project_id),
-	FOREIGN KEY (cart_id) REFERENCES categories (cart_id),
-    FOREIGN KEY (project_id) REFERENCES projects (project_id)
-);
 
 CREATE TABLE project_categories (
     project_id INT NOT NULL,
     cart_id INT NOT NULL,
-    	
     PRIMARY KEY (project_id, cart_id), 
-    
     FOREIGN KEY (project_id) REFERENCES projects(project_id),
     FOREIGN KEY (category_id) REFERENCES categories(cart_id) 
 );
 
-INSERT INTO project_categories (project_id, category_id) VALUES
+INSERT INTO project_categories (project_id, cart_id) VALUES
 
 (1, 3), 
 (2, 1), 
@@ -92,3 +79,22 @@ INSERT INTO project_categories (project_id, category_id) VALUES
 (13, 2),
 (14, 2),
 (15, 2);
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL,
+    role_description TEXT
+);
+
+INSERT INTO roles (role_name, role_description) VALUES 
+    ('user', 'Standard user with basic access'),
+    ('admin', 'Administrator with full system access');
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role_id INTEGER REFERENCES roles(role_id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

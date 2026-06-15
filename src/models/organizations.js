@@ -78,7 +78,7 @@ const updateOrganization = async (organizationId, organization_name, description
     console.log('Updated organization with ID:', organizationId);
   }
 
-  return result.rows[0].orga_id;
+  return result.rows[0].org_id;
 };
 
 export {getAllOrganizations, getOrganizationDetails, createOrganization, updateOrganization};  
