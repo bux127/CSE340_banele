@@ -6,7 +6,10 @@
     <hr>
 
     <h1>Service Projects in this Category:</h1>
+    
+    <% if (user && user.role_name === 'admin') { %>
     <p><a href="/edit-category/<%= category.cart_id %>">Edit category</a></p>
+<% } %>
     <% if (projects.length === 0) { %>
         <p>No projects are currently assigned to this category.</p>
     <% } else { %>

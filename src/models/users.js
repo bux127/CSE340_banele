@@ -1,4 +1,5 @@
 import db from './db.js'
+import bcrypt from 'bcrypt';
 
 const createUser = async (name, email, passwordHash) => {
     const default_role = 'user';
@@ -24,9 +25,10 @@ const createUser = async (name, email, passwordHash) => {
 
 const findUserByEmail = async (email) => {
     const query = `
-        SELECT user_id, name, email, password_hash, role_id 
-        FROM users 
-        WHERE email = $1
+        SELECT u.user_id, u.email, u.password_hash, r.role_name 
+        FROM users u
+        JOIN roles r on u.role_id = r.role_id 
+        WHERE u.email = $1
     `;
     const queryParams = [email];
     
@@ -63,5 +65,6 @@ const authenticateUser = async (email, password) => {
     return null;
 }
 
-export { createUser, authenticateUser  };
+
+export { createUser, authenticateUser, findUserByEmail  };
 

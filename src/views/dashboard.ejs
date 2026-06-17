@@ -2,9 +2,14 @@
 
 <main>
     <h1><%= title %></h1>
+    <h2>Welcome <%= user.role_name %></h2>
+    <% if (user && user.role_name === 'admin') { %>
+    <p><a href="/users">Manage Registered Users</a></p>
+  </div>
+<% } %>
 
     <h2>Dashboard</h2>
-    <p>Name: <%= name %></p>
+    <p>Name: <%= user.role_name %></p>
     <p>Username: <%= email %></p>
 
 </main>

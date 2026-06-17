@@ -16,8 +16,10 @@
         <p><strong>Date:</strong> <%= new Date(project.date).toLocaleDateString() %></p>
         </div>
     <%})%>
-    
-<p><a href="/new-project">Add New Service Project</a></p>
+    <% if (user && user.role_name === 'admin') { %>
+    <a href="/new-project">Add New Service Project</a>
+<% } %>
+
     </main>
 <%- include('partials/footer') %>
 

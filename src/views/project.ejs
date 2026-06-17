@@ -1,6 +1,9 @@
 <%- include('partials/header') %>
 <main>
+    <% if (user && user.role_name === 'admin') { %>
     <p><a href="/edit-project/<%= project.project_id %>">Edit Project</a></p>
+<% } %>
+    
     <h1><%= title %></h1>
     <p><strong>Description:</strong></p>
     <p><%= project.description %></p>

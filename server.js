@@ -58,6 +58,8 @@ app.use((req, res, next) => {
     if (req.session && req.session.user) {
         res.locals.isLoggedIn = true;
     }
+
+    res.locals.user = req.session.user || null;
     res.locals.NODE_ENV = NODE_ENV;
     next();
 });
@@ -110,7 +112,7 @@ app.listen(PORT, async() => {
         await testConnection();
         console.log(`Server is running at http://127.0.0.1:${PORT}`);
         console.log(`Environment: ${NODE_ENV}`);
-    }catch(console){
+    }catch(error){
         console.error('Error connecting to the database:', error);
     }  
 });
