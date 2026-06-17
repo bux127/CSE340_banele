@@ -1,4 +1,4 @@
-import {getAllProjects, getUpcomingProjects, getProjectDetails, getProjectsByOrganizationId, getCategoriesByProjectId, createProject, getAllOrganizations, updateProject} from '../models/projects.js'
+import {getAllProjects, getUpcomingProjects, getProjectDetails, getProjectsByOrganizationId, getCategoriesByProjectId, createProject, getAllOrganizations, updateProject, isUserVolunteering, addVolunteer, removeVolunteer, getProjectsByVolunteer } from '../models/projects.js'
 import { body, validationResult } from 'express-validator';
 
 const projectValidation = [
@@ -41,8 +41,14 @@ const showProjectDetailsPage = async (req, res) => {
     const projectId = req.params.id;
     const project = await getProjectDetails(projectId);
     const cart = await getCategoriesByProjectId(projectId);
+    let isVolunteering = false;
+    
+    // Check if a user session exists
+    if (req.session && req.session.user) {
+        isVolunteering = await isUserVolunteering(req.session.user.user_id, projectId);
+    }
     const title = 'Project Details';
-    res.render('project', { project, title, cart});
+    res.render('project', { project, isVolunteering, title, cart, user: req.session.user || null});
 };
 
 const showNewProjectForm = async (req, res) => {
@@ -112,4 +118,43 @@ if (!results.isEmpty()) {
 }
 
 
-export {projectsPage, showProjectsPage, showProjectDetailsPage, showNewProjectForm,processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm};
+// Handle submission to volunteer
+const processVolunteerSignUp = async (req, res) => {
+    const projectId = req.body.projectId;
+    const userId = req.session.user.user_id;
+
+    await addVolunteer(userId, projectId);
+    req.flash('success', 'Thank you for volunteering!');
+    res.redirect(`/projects/${projectId}`);
+};
+
+const processRemoveVolunteer = async (req, res) => {
+    try {
+        // 1. Grab the project ID from the hidden form input (<input name="projectId">)
+        const projectId = req.body.projectId;
+        
+        // 2. Grab the logged-in user's ID securely from their session
+        const userId = req.session.user.user_id;
+
+        // 3. Call your model function to delete the database record
+        await removeVolunteer(userId, projectId);
+        
+        // 4. Send a success message
+        req.flash('success', 'You have been removed from the volunteer list.');
+        
+        // 5. Smart redirect: If they clicked remove from the dashboard, send them back to the dashboard. 
+        // Otherwise, send them back to the project detail page.
+        if (req.headers.referer && req.headers.referer.includes('dashboard')) {
+            return res.redirect('/dashboard');
+        }
+        res.redirect(`/projects/${projectId}`);
+
+    } catch (error) {
+        console.error("Error removing volunteer:", error);
+        req.flash('error', 'An error occurred while trying to cancel your sign-up.');
+        res.redirect('/dashboard');
+    }
+};
+
+
+export {projectsPage, showProjectsPage, showProjectDetailsPage, showNewProjectForm,processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, processVolunteerSignUp, processRemoveVolunteer};

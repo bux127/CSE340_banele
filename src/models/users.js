@@ -65,6 +65,17 @@ const authenticateUser = async (email, password) => {
     return null;
 }
 
+const getAllUsers = async () => {
+    const query = `
+        SELECT u.user_id, u.name, u.email, r.role_name 
+        FROM users u
+        JOIN roles r on u.role_id = r.role_id 
+    `; // Make sure the column matches your table (e.g., u.user_role or u.role_name)
+    const result = await db.query(query);
+    return result.rows; // Returns an array of user objects
+};
 
-export { createUser, authenticateUser, findUserByEmail  };
+
+
+export { createUser, authenticateUser, getAllUsers, findUserByEmail  };
 

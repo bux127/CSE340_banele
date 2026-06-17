@@ -2,7 +2,7 @@ import express from 'express';
 
 import { homePage } from './controllers/index.js';
 import { organizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-import { projectsPage,showProjectDetailsPage, showProjectsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
+import { projectsPage,showProjectDetailsPage, showProjectsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, processVolunteerSignUp, processRemoveVolunteer } from './controllers/projects.js';
 import { categoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm, categoryValidation } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, buildUsersView } from './controllers/users.js';
@@ -40,6 +40,8 @@ router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
 router.get('/dashboard', requireLogin, showDashboard);
 router.get('/users', requireLogin, requireRole('admin'), buildUsersView);
+router.post('/projects/volunteer', requireLogin, processVolunteerSignUp);
+router.post('/projects/unvolunteer', requireLogin, processRemoveVolunteer);
 
 
 

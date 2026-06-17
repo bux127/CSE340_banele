@@ -369,3 +369,629 @@ p a[href^="/"] {
         font-size: 14px;
     }
 }       
+
+/* ==========================================================================
+   Dashboard & Volunteer Schedule Styles
+   ========================================================================== */
+
+/* Account Info Card Container */
+.dashboard-details {
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    padding: 1.5rem;
+    margin: 1.5rem 0 2.5rem 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-details h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.4rem;
+}
+
+.dashboard-details p {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+/* Volunteer Schedule Section */
+.volunteer-schedule {
+    margin-top: 2rem;
+}
+
+/* Unordered List Layout */
+.volunteer-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Individual List Items styled as cards using Flexbox */
+.volunteer-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.volunteer-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.volunteer-list li strong a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.volunteer-list li strong a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Buttons & UI Badges
+   ========================================================================== */
+
+/* Base button defaults */
+button, .btn-admin {
+    font-family: inherit;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+/* Admin Feature Link */
+.btn-admin {
+    display: inline-block;
+    background-color: #9b59b6;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+}
+
+.btn-admin:hover {
+    background-color: #8e44ad;
+}
+
+/* Dashboard 'Remove' Action Button */
+.btn-small-danger {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.btn-small-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Detail Page Action Buttons */
+.volunteer-actions {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f4f6f7;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.status-badge {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.btn-success {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-success:hover {
+    background-color: #219653;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* ==========================================================================
+   Responsive Design Breakpoint
+   ========================================================================== */
+@media (max-width: 700px) {
+    .volunteer-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .volunteer-list li form {
+        width: 100%;
+    }
+    
+    .btn-small-danger {
+        width: 100%;
+        padding: 0.6rem;
+    }
+}
+
+/* ==========================================================================
+   User Management Table Styles
+   ========================================================================== */
+
+/* Main Table Wrap */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5rem 0;
+    font-size: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures round corners mask internal rows */
+}
+
+/* Header Styling */
+thead tr {
+    background-color: #2c3e50;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 600;
+}
+
+th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Zebra Striping (Even Rows) */
+tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+/* Bottom Visual anchor */
+tbody tr:last-of-type {
+    border-bottom: 3px solid #2c3e50;
+}
+
+/* Hover effect for row tracking */
+tbody tr:hover {
+    background-color: #edf2f7;
+    transition: background-color 0.15s ease;
+}
+
+/* Role Column Specific Badge styling (Optional layout boost) */
+td:last-child {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+/* Back Link Navigation Link */
+a[href="/dashboard"] {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+a[href="/dashboard"]:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive Design Table Adjustment
+   ========================================================================== */
+@media (max-width: 600px) {
+    table {
+        font-size: 0.9rem;
+    }
+    th, td {
+        padding: 10px 12px;
+    }
+}
+
+/* ==========================================================================
+   Login Form Styles
+   ========================================================================== */
+
+/* Main content setup to center the form on the page */
+main {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+main h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+/* The card style container for the form */
+form {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+/* Individual Form Input Blocks */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Labels */
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+/* Form Inputs (Email & Password Fields) */
+.form-group input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #2c3e50;
+    background-color: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus states when a user clicks inside a text input field */
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Login Submit Button */
+form button[type="submit"] {
+    width: 100%;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+form button[type="submit"]:active {
+    transform: scale(0.99);
+}
+
+/* ==========================================================================
+   Responsive Screen Check
+   ========================================================================== */
+@media (max-width: 480px) {
+    main {
+        margin: 1.5rem auto;
+    }
+    form {
+        padding: 1.75rem;
+    }
+}
+
+/* ==========================================================================
+   Dashboard Layout Card (.dash Container)
+   ========================================================================== */
+
+/* The main bounding block containing all dashboard views */
+.dash {
+    max-width: 950px;
+    margin: 2.5rem auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+/* Clear section text breaks within the dash layout */
+.dash h2 {
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f1f5f9;
+    font-size: 1.4rem;
+}
+
+/* ==========================================================================
+   Account Information Card Layout
+   ========================================================================== */
+
+.dashboard-details {
+    background-color: #f8f9fa;
+    border-left: 5px solid #3498db;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0 2.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.dashboard-details p {
+    margin: 0.6rem 0;
+    color: #4a5568;
+    font-size: 1.05rem;
+}
+
+/* Rigid inline width pushes text labels into perfect vertical alignment columns */
+.dashboard-details strong {
+    color: #2c3e50;
+    display: inline-block;
+    width: 150px; 
+}
+
+/* ==========================================================================
+   Volunteer Schedule List Component
+   ========================================================================== */
+
+.volunteer-schedule {
+    margin-top: 2rem;
+}
+
+.volunteer-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Individual list item cards using Flexbox layout */
+.volunteer-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Lift cards off the background subtly on hover */
+.volunteer-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.volunteer-list li strong a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.volunteer-list li strong a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Interactive Action Buttons
+   ========================================================================== */
+
+/* Administrative Management Button */
+.btn-admin {
+    display: inline-block;
+    background-color: #9b59b6;
+    color: #ffffff;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(155, 89, 182, 0.15);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-admin:hover {
+    background-color: #8e44ad;
+}
+
+.btn-admin:active {
+    transform: scale(0.98);
+}
+
+/* Inline row item remove trigger button */
+.btn-small-danger {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-small-danger:hover {
+    background-color: #c0392b;
+}
+
+/* ==========================================================================
+   Responsive Screen Media Rules
+   ========================================================================== */
+@media (max-width: 700px) {
+    .dash {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    /* Collapse flex items vertically on small mobile phone configurations */
+    .volunteer-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .volunteer-list li form {
+        width: 100%;
+    }
+
+    .btn-small-danger {
+        width: 100%;
+        padding: 0.7rem;
+        text-align: center;
+    }
+}
+
+main p {
+    color: #4a5568;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Remove list styling and use a flexible layout column layout */
+main ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Individual list item card styling */
+main ul li {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #4a5568;
+    font-size: 1.05rem;
+}
+
+/* Hover elevation effect */
+main ul li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+    border-color: #cbd5e1;
+}
+
+/* Partner Logo Formatting */
+main ul li img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain; /* Stops images from stretching awkwardly */
+    background-color: #f8f9fa;
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid #edf2f7;
+    margin-right: 1.5rem; /* Separates logo from text */
+}
+
+/* Organization Title Links */
+main ul li a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.15s ease;
+}
+
+main ul li a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Admin Action Feature Buttons
+   ========================================================================== */
+
+/* "Add New Organization" Button Setup */
+a[href="/new-organization"] {
+    display: inline-block;
+    background-color: #2ecc71;
+    color: #ffffff;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.15);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+a[href="/new-organization"]:hover {
+    background-color: #27ae60;
+}
+
+a[href="/new-organization"]:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Mobile Directory Responsive Rules
+   ========================================================================== */
+@media (max-width: 600px) {
+    main ul li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1.25rem;
+    }
+
+    main ul li img {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        width: 55px;
+        height: 55px;
+    }
+    
+    a[href="/new-organization"] {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+    }
+}

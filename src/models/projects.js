@@ -177,5 +177,45 @@ const getAllOrganizations = async() => {
     return result.rows;
 };
 
+// 1. Add a user as a volunteer
+const addVolunteer = async (userId, projectId) => {
+    const query = `
+        INSERT INTO project_volunteers (user_id, project_id) 
+        VALUES ($1, $2) ON CONFLICT DO NOTHING
+    `;
+    await db.query(query, [userId, projectId]);
+};
 
-export {getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, getProjectsByCategoryId, getCategoriesByProjectId, getCategoryDetails, createProject, getAllOrganizations, updateProject};
+// 2. Remove a user as a volunteer
+const removeVolunteer = async (userId, projectId) => {
+    const query = `
+        DELETE FROM project_volunteers 
+        WHERE user_id = $1 AND project_id = $2
+    `;
+    await db.query(query, [userId, projectId]);
+};
+
+// 3. Get all projects a specific user volunteered for
+const getProjectsByVolunteer = async (userId) => {
+    const query = `
+        SELECT p.project_id, p.title, p.description 
+        FROM projects p
+        JOIN project_volunteers pv ON p.project_id = pv.project_id
+        WHERE pv.user_id = $1
+    `;
+    const result = await db.query(query, [userId]);
+    return result.rows;
+};
+
+// 4. Helper to check if a user is ALREADY volunteering for a specific project
+const isUserVolunteering = async (userId, projectId) => {
+    const query = `
+        SELECT 1 FROM project_volunteers 
+        WHERE user_id = $1 AND project_id = $2
+    `;
+    const result = await db.query(query, [userId, projectId]);
+    return result.rows.length > 0;
+};
+
+
+export {getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, getProjectsByCategoryId, getCategoriesByProjectId, getCategoryDetails, createProject, getAllOrganizations, updateProject, addVolunteer, removeVolunteer, getProjectsByVolunteer, isUserVolunteering};

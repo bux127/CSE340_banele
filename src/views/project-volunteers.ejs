@@ -1,0 +1,18 @@
+<% if (user) { %>
+    <div class="volunteer-actions">
+        <% if (isVolunteering) { %>
+            <p class="status-badge">✓ You are volunteering for this project</p>
+            <form action="/projects/unvolunteer" method="POST">
+                <input type="hidden" name="projectId" value="<%= project.project_id %>">
+                <button type="submit" class="btn-danger">Cancel Volunteering</button>
+            </form>
+        <% } else { %>
+            <form action="/projects/volunteer" method="POST">
+                <input type="hidden" name="projectId" value="<%= project.project_id %>">
+                <button type="submit" class="btn-success">Volunteer for this Project</button>
+            </form>
+        <% } %>
+    </div>
+<% } else { %>
+    <p><a href="/login">Log in</a> to volunteer for this service project.</p>
+<% } %>

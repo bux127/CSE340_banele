@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
-import { createUser, authenticateUser, findUserByEmail } from '../models/users.js';
+import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
+import { getProjectsByVolunteer } from '../models/projects.js';
 
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -73,13 +74,29 @@ const requireLogin = (req, res, next) => {
     next();
 };
 
-const showDashboard = (req, res) => {
-    const user = req.session.user;
-    res.render('dashboard', { 
-        title: 'Dashboard',
-        name: user.name,
-        email: user.email
-    });
+const showDashboard = async (req, res) => {
+   try {
+        const user = req.session.user;
+        
+        // Fetch the projects this specific user volunteered for
+        const volunteeredProjects = await getProjectsByVolunteer(user.user_id);
+
+        res.render('dashboard', { 
+            title: 'Dashboard',
+            name: user.name,
+            email: user.email,
+            volunteeredProjects: volunteeredProjects // Passing the missing variable!
+        });
+    } catch (error) {
+        console.error("Error loading dashboard data:", error);
+        req.flash('error', 'Could not load your volunteer schedule.');
+        res.render('dashboard', { 
+            title: 'Dashboard',
+            name: req.session.user.name,
+            email: req.session.user.email,
+            volunteeredProjects: [] // Pass an empty array so the template doesn't crash
+        });
+    }
 };
 
 /**
@@ -109,7 +126,7 @@ const requireRole = (role) => {
 };
 
 const buildUsersView = async (req, res, next) =>{
-  let user = await findUserByEmail();
+  let user = await getAllUsers();
   res.render('users', { title: "User Management", users: user});
 }
 

@@ -1,17 +1,37 @@
 <%- include('partials/header') %>
 
 <main>
-    <h1><%= title %></h1>
+<h1><%= title %></h1>
+<div class="dash">
     <h2>Welcome <%= user.role_name %></h2>
     <% if (user && user.role_name === 'admin') { %>
     <p><a href="/users">Manage Registered Users</a></p>
-  </div>
+ 
 <% } %>
 
     <h2>Dashboard</h2>
     <p>Name: <%= user.role_name %></p>
-    <p>Username: <%= email %></p>
+    <p>Username: <%= user.email %></p>
 
+    <h2>My Volunteer Schedule</h2>
+
+</div>
+    
+<% if (volunteeredProjects.length > 0) { %>
+    <ul class="volunteer-list">
+        <% volunteeredProjects.forEach(project => { %>
+            <li>
+                <strong><a href="/projects/<%= project.project_id %>"><%= project.title %></a></strong>
+                <form action="/projects/unvolunteer" method="POST" style="display:inline;">
+                    <input type="hidden" name="projectId" value="<%= project.project_id %>">
+                    <button type="submit" class="btn-small-danger">Remove</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+<% } else { %>
+    <p>You haven't signed up for any volunteer projects yet.</p>
+<% } %>
 </main>
 
 <%- include('partials/footer') %>
