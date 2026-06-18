@@ -804,7 +804,6 @@ form button[type="submit"]:active {
 
 .volunteer-list li strong a {
     color: #2c3e50;
-    text-decoration: none;
     font-weight: 600;
 }
 
@@ -824,7 +823,6 @@ form button[type="submit"]:active {
     color: #ffffff;
     padding: 0.7rem 1.4rem;
     border-radius: 6px;
-    text-decoration: none;
     font-weight: 600;
     margin-bottom: 1rem;
     box-shadow: 0 2px 4px rgba(155, 89, 182, 0.15);
@@ -935,7 +933,6 @@ main ul li img {
 /* Organization Title Links */
 main ul li a {
     color: #2c3e50;
-    text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
     transition: color 0.15s ease;
@@ -943,7 +940,7 @@ main ul li a {
 
 main ul li a:hover {
     color: #3498db;
-    text-decoration: underline;
+    
 }
 
 /* ==========================================================================
@@ -957,7 +954,7 @@ a[href="/new-organization"] {
     color: #ffffff;
     padding: 0.7rem 1.4rem;
     border-radius: 6px;
-    text-decoration: none;
+    
     font-weight: 600;
     box-shadow: 0 2px 4px rgba(46, 204, 113, 0.15);
     transition: background-color 0.2s ease, transform 0.1s ease;

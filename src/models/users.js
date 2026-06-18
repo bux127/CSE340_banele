@@ -28,7 +28,7 @@ const findUserByEmail = async (email) => {
         SELECT u.user_id, u.email, u.password_hash, r.role_name 
         FROM users u
         JOIN roles r on u.role_id = r.role_id 
-        WHERE u.email = $1
+        WHERE u.email = $1 
     `;
     const queryParams = [email];
     

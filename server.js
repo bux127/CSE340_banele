@@ -101,6 +101,9 @@ app.use((err, req, res, next) => {
         title: status === 404 ? 'Page Not Found' : 'Server Error',
         error: err.message,
         stack: err.stack
+        // SAFEGUARDS: Ensure header variables are always defined even if the app crashes early
+        isLoggedIn: req.session && req.session.user ? true : false,
+        user: req.session && req.session.user ? req.session.user : null
     };
     
     // Render the appropriate error template
